@@ -33,6 +33,12 @@ contract EventGate is Ownable {
     mapping(bytes32 => uint256) public eventHashToEventId;
     mapping(bytes32 => bool) public eventExists;
 
+    function createEvent(address ticketAddress, string eventName) {
+      bytes32 eventHash = keccak256(abi.encode(ticketAddress, eventName));
+      require(eventExists(eventHash) != true, 'event already exists');
+      
+    }
+
     constructor() {}
 
     receive() external payable {}
