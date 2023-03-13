@@ -29,18 +29,29 @@ contract EventGate is Ownable {
     Counters.Counter private eventIdCounter;
     uint256 public enterCost;
     uint256 public eventCost;
+
     mapping(uint256 => EventInfo) public events;
     mapping(bytes32 => uint256) public eventHashToEventId;
     mapping(bytes32 => bool) public eventExists;
 
-    function createEvent(address ticketAddress, string eventName) {
-      bytes32 eventHash = keccak256(abi.encode(ticketAddress, eventName));
-      require(eventExists(eventHash) != true, 'event already exists');
+    event EventCreated();
+    event EnterEvent();
+
+    function createEvent(address ticketAddress, string _eventName) external returns(uint256){
+      bytes32 _eventHash = keccak256(abi.encode(ticketAddress, _eventName));
+      require(eventExists(_eventHash) != true, 'event already exists');
       eventIdCounter.increment();
       uint256 _eventId = eventIdCounter.current();
-      eventHashToEventId[eventHash] =  _eventId;
-      eventExists[eventHash] = true;
-      //events[_eventId] = null;
+      eventHashToEventId[_eventHash] =  _eventId;
+      eventExists[_eventHash] = true;
+      EventInfo storage _eventInfo = events[_eventId];
+      _eventInfo.eventAddress = ticketAddress;
+      _eventInfo.eventName = _eventName;
+      _eventInfo.eventId = _eventId;
+      _eventInfo.eventCreator = msg.sender;
+      _eventInfo.eventHash = _eventHash;
+      emit EventCreated();
+      return _eventId;
     }
 
     constructor() {}
