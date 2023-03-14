@@ -38,8 +38,10 @@ contract EventGate is Ownable {
     event EventEntered(string eventName, address entrant, bytes32 indexed entrantHash, uint256 time, address ticketAddress, 
                     uint256 indexed eventTicketId, bytes32 indexed eventHash, uint256 indexed eventId);
 
+    constructor(){}
+
     function createEvent(address _ticketAddress, string _eventName) external returns(uint256){
-      bytes32 _eventHash = keccak256(abi.encode(_ticketAddress, _eventName));
+      bytes32 _eventHash = keccak256(abi.encode(_ticketAddress,_eventName));
       require(eventExists(_eventHash) != true, 'event already exists');
       eventIdCounter.increment();
       uint256 _eventId = eventIdCounter.current();
@@ -56,7 +58,10 @@ contract EventGate is Ownable {
     }
 
     function enterEvent(address _ticketAddress, string _eventName, uint256 _eventTicketId) external returns(bytes32 _entrantHash){
-
+      require(IERC721(_ticketAddress).ownerOf(_eventTicketId) == msg.sender, "You must own the token you are entering with");
+      bytes32 _eventHash = keccak256(abi.encode(_ticketAddress,_eventName));
+      require(eventExists(_eventHash), "This event does not exist");
+      //bytes32 _entrantHash = 
     }
 
     constructor() {}
