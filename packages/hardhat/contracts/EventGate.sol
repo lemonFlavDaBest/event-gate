@@ -63,7 +63,7 @@ contract EventGate is Ownable {
       bytes32 _eventHash = keccak256(abi.encode(_ticketAddress,_eventName));
       require(eventExists(_eventHash), "This event does not exist");
       bytes32 _entrantHash = keccak256(abi.encode(msg.sender,_eventTicketId));
-      emit EventEntered(_eventName, msg.)
+      emit EventEntered(_eventId, _eventHash, _entrantHash, _eventTicketId, msg.sender, _ticketAddress, _eventName, block.timestamp);
       return _entrantHash;
     }
 
