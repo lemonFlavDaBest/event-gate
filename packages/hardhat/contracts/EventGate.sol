@@ -35,7 +35,8 @@ contract EventGate is Ownable {
     mapping(bytes32 => bool) public eventExists;
 
     event EventCreated(string eventName, address ticketAddress, bytes32 indexed eventHash, uint256 indexed eventId);
-    event EnterEvent(string eventName);
+    event EnterEvent(string eventName, address entrant, bytes32 indexed entrantHash, uint256 time, address ticketAddress, 
+                    uint256 indexed eventTicketId, bytes32 indexed eventHash, uint256 indexed eventId);
 
     function createEvent(address _ticketAddress, string _eventName) external returns(uint256){
       bytes32 _eventHash = keccak256(abi.encode(_ticketAddress, _eventName));
@@ -52,6 +53,10 @@ contract EventGate is Ownable {
       _eventInfo.eventHash = _eventHash;
       emit EventCreated(_eventName, _ticketAddress, _eventHash, _eventId);
       return _eventId;
+    }
+
+    function enterEvent(address _ticketAddress, string _eventName, uint256 _eventTicketId) returns(bytes32 _entrantHash){
+      
     }
 
     constructor() {}
