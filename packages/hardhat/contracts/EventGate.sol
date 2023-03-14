@@ -27,16 +27,17 @@ contract EventGate is Ownable {
 
     using Counters for Counters.Counter;
     Counters.Counter private eventIdCounter;
-    uint256 public enterCost;
-    uint256 public eventCost;
+    uint256 public entranceCost;
+    uint256 public createEventCost;
 
     mapping(uint256 => EventInfo) public events;
     mapping(bytes32 => uint256) public eventHashToEventId;
     mapping(bytes32 => bool) public eventExists;
 
-    event EventCreated(string eventName, address ticketAddress, bytes32 indexed eventHash, uint256 indexed eventId);
-    event EventEntered(string eventName, address entrant, bytes32 indexed entrantHash, uint256 time, address ticketAddress, 
-                    uint256 indexed eventTicketId, bytes32 indexed eventHash, uint256 indexed eventId);
+
+    event EventCreated(uint256 indexed eventId, bytes32 indexed eventHash, address ticketAddress, string eventName);
+    event EventEntered(uint256 indexed eventId, bytes32 indexed eventHash, bytes32 indexed entrantHash, uint256 indexed eventTicketId, 
+                     address entrant, address ticketAddress, string eventName, uint256 time);
 
     constructor(){}
 
@@ -53,15 +54,17 @@ contract EventGate is Ownable {
       _eventInfo.eventId = _eventId;
       _eventInfo.eventCreator = msg.sender;
       _eventInfo.eventHash = _eventHash;
-      emit EventCreated(_eventName, _ticketAddress, _eventHash, _eventId);
+      emit EventCreated(_eventId, _eventHash, _ticketAddress, _eventName);
       return _eventId;
     }
 
-    function enterEvent(address _ticketAddress, string _eventName, uint256 _eventTicketId) external returns(bytes32 _entrantHash){
+    function enterEvent(address _ticketAddress, string _eventName, uint256 _eventTicketId) external returns(bytes32){
       require(IERC721(_ticketAddress).ownerOf(_eventTicketId) == msg.sender, "You must own the token you are entering with");
       bytes32 _eventHash = keccak256(abi.encode(_ticketAddress,_eventName));
       require(eventExists(_eventHash), "This event does not exist");
-      //bytes32 _entrantHash = 
+      bytes32 _entrantHash = keccak256(abi.encode(msg.sender,_eventTicketId));
+      emit EventEntered(_eventName, msg.)
+      return _entrantHash;
     }
 
     constructor() {}
