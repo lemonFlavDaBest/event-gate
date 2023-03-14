@@ -18,7 +18,7 @@ import "@openzeppelin/contracts/utils/Counters.sol";
 contract EventGate is Ownable {
 
     struct EventInfo {
-      address eventAddress;
+      address ticketAddress;
       string eventName;
       uint256 eventId;
       address eventCreator;
@@ -34,23 +34,23 @@ contract EventGate is Ownable {
     mapping(bytes32 => uint256) public eventHashToEventId;
     mapping(bytes32 => bool) public eventExists;
 
-    event EventCreated();
-    event EnterEvent();
+    event EventCreated(string eventName, address ticketAddress, bytes32 indexed eventHash, uint256 indexed eventId);
+    event EnterEvent(string eventName);
 
-    function createEvent(address ticketAddress, string _eventName) external returns(uint256){
-      bytes32 _eventHash = keccak256(abi.encode(ticketAddress, _eventName));
+    function createEvent(address _ticketAddress, string _eventName) external returns(uint256){
+      bytes32 _eventHash = keccak256(abi.encode(_ticketAddress, _eventName));
       require(eventExists(_eventHash) != true, 'event already exists');
       eventIdCounter.increment();
       uint256 _eventId = eventIdCounter.current();
       eventHashToEventId[_eventHash] =  _eventId;
       eventExists[_eventHash] = true;
       EventInfo storage _eventInfo = events[_eventId];
-      _eventInfo.eventAddress = ticketAddress;
+      _eventInfo.eventAddress = _ticketAddress;
       _eventInfo.eventName = _eventName;
       _eventInfo.eventId = _eventId;
       _eventInfo.eventCreator = msg.sender;
       _eventInfo.eventHash = _eventHash;
-      emit EventCreated();
+      emit EventCreated(_eventName, _ticketAddress, _eventHash, _eventId);
       return _eventId;
     }
 
