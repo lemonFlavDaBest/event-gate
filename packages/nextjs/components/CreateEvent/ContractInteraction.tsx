@@ -8,9 +8,12 @@ import { useScaffoldContractWrite } from "~~/hooks/scaffold-eth";
 export default function ContractInteraction() {
   const [visible, setVisible] = useState(true);
   const [newGreeting, setNewGreeting] = useState("");
+  const [eventName, setEventName] = useState("");
+  const [ticketAddress, setTicketAddress] = useState(null);
+  const [startEvent, setStartEvent] = useState(false);
 
-  const { writeAsync, isLoading } = useScaffoldContractWrite("YourContract", "setGreeting", [newGreeting], "0.01");
   //const { writeAsync, isLoading } = useScaffoldContractWrite("YourContract", "setGreeting", [newGreeting], "0.01");
+  const { writeAsync, isLoading } = useScaffoldContractWrite("EventGate", "createEvent", [ticketAddress, eventName, startEvent], );
 
   return (
     <div className="flex bg-base-300 relative pb-10">
