@@ -9,7 +9,7 @@ export default function ContractInteraction() {
   const [visible, setVisible] = useState(true);
   const [newGreeting, setNewGreeting] = useState("");
   const [eventName, setEventName] = useState("");
-  const [ticketAddress, setTicketAddress] = useState(null);
+  const [ticketAddress, setTicketAddress] = useState("");
   const [startEvent, setStartEvent] = useState(false);
 
   //const { writeAsync, isLoading } = useScaffoldContractWrite("YourContract", "setGreeting", [newGreeting], "0.01");
@@ -24,13 +24,24 @@ export default function ContractInteraction() {
         <div className="flex flex-col mt-6 px-7 py-8 bg-base-200 opacity-80 rounded-2xl shadow-lg border-2 border-primary">
           <span className="text-4xl sm:text-6xl text-black">Create your event_</span>
 
-          <div className="mt-8 flex flex-col sm:flex-row items-start sm:items-center gap-2 sm:gap-5">
+          <div className="mt-8 flex flex-col flex-row items-start sm:items-center gap-2 sm:gap-5">
             <input
               type="text"
-              placeholder="Write your greeting here"
+              placeholder="ticket contract here"
               className="input font-bai-jamjuree w-full px-5 bg-[url('/assets/gradient-bg.png')] bg-[length:100%_100%] border border-primary text-lg sm:text-2xl placeholder-white uppercase"
-              onChange={e => setNewGreeting(e.target.value)}
+              onChange={e => setTicketAddress(e.target.value)}
             />
+            <input
+              type="text"
+              placeholder="cool event name here"
+              className="input font-bai-jamjuree w-full px-5 bg-[url('/assets/gradient-bg.png')] bg-[length:100%_100%] border border-primary text-lg sm:text-2xl placeholder-white uppercase"
+              onChange={e => setEventName(e.target.value)}
+            />
+            <label className="swap"> 
+              <input type="checkbox" onChange={() => setStartEvent(!startEvent)}/> 
+              <div className="swap-on">START EVENT NOW</div>
+              <div className="swap-off">START EVENT LATER</div>
+            </label>
             <div className="flex rounded-full border border-primary p-1 flex-shrink-0">
               <div className="flex rounded-full border-2 border-primary p-1">
                 <button
