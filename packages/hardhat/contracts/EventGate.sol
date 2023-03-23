@@ -67,7 +67,5 @@ contract EventGate is Ownable {
       return _entrantHash;
     }
 
-    constructor() {}
-
     receive() external payable {}
 }
