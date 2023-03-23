@@ -41,8 +41,8 @@ contract EventGate is Ownable {
     event EventCreated(uint256 indexed eventId, bytes32 indexed eventHash, address ticketAddress, string eventName, address eventOwner);
     event EventEntered(uint256 indexed eventId, bytes32 eventHash, bytes32 indexed entrantHash, 
     uint256 indexed eventTicketId, address entrant, address ticketAddress, string eventName, uint256 time);
-    event EventStarted(uint256 indexed eventId, uint256 time)
-    event EventFinished(uint256 indexed eventId, uint256 time)
+    event EventStarted(uint256 indexed eventId, uint256 time);
+    event EventFinished(uint256 indexed eventId, uint256 time);
 
     constructor(){}
 
@@ -83,7 +83,7 @@ contract EventGate is Ownable {
         emit EventFinished(_eventId, block.timestamp);
       } else {
         eventInProgress[_eventId] = true;
-        emit EventStarted(_eventId, block.timestamp)
+        emit EventStarted(_eventId, block.timestamp);
       }
     }
     receive() external payable {}
