@@ -36,20 +36,20 @@ contract EventGate is Ownable {
 
 
     event EventCreated(uint256 indexed eventId, bytes32 indexed eventHash, address ticketAddress, string eventName);
-    event EventEntered(uint256 indexed eventId, bytes32 indexed eventHash, bytes32 indexed entrantHash, uint256 indexed eventTicketId, 
-                     address entrant, address ticketAddress, string eventName, uint256 time);
+    event EventEntered(uint256 indexed eventId, bytes32 eventHash, bytes32 indexed entrantHash, 
+    uint256 indexed eventTicketId, address entrant, address ticketAddress, string eventName, uint256 time);
 
     constructor(){}
 
-    function createEvent(address _ticketAddress, string _eventName) external returns(uint256){
+    function createEvent(address _ticketAddress, string calldata _eventName) external returns(uint256){
       bytes32 _eventHash = keccak256(abi.encode(_ticketAddress,_eventName));
-      require(eventExists(_eventHash) != true, 'event already exists');
+      require(eventExists[_eventHash] != true, 'event already exists');
       eventIdCounter.increment();
       uint256 _eventId = eventIdCounter.current();
       eventHashToEventId[_eventHash] =  _eventId;
       eventExists[_eventHash] = true;
       EventInfo storage _eventInfo = events[_eventId];
-      _eventInfo.eventAddress = _ticketAddress;
+      _eventInfo.ticketAddress = _ticketAddress;
       _eventInfo.eventName = _eventName;
       _eventInfo.eventId = _eventId;
       _eventInfo.eventCreator = msg.sender;
@@ -58,11 +58,12 @@ contract EventGate is Ownable {
       return _eventId;
     }
 
-    function enterEvent(address _ticketAddress, string _eventName, uint256 _eventTicketId) external returns(bytes32){
+    function enterEvent(address _ticketAddress, string calldata _eventName, uint256 _eventTicketId) external returns(bytes32){
       require(IERC721(_ticketAddress).ownerOf(_eventTicketId) == msg.sender, "You must own the token you are entering with");
       bytes32 _eventHash = keccak256(abi.encode(_ticketAddress,_eventName));
-      require(eventExists(_eventHash), "This event does not exist");
+      require(eventExists[_eventHash], "This event does not exist");
       bytes32 _entrantHash = keccak256(abi.encode(msg.sender,_eventTicketId));
+      uint256 _eventId = eventHashToEventId[_eventHash];
       emit EventEntered(_eventId, _eventHash, _entrantHash, _eventTicketId, msg.sender, _ticketAddress, _eventName, block.timestamp);
       return _entrantHash;
     }
