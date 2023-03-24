@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0;
 
 import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
@@ -8,8 +9,7 @@ import "@openzeppelin/contracts/token/ERC721/extensions/ERC721Burnable.sol";
  * @author Damn Vulnerable DeFi (https://damnvulnerabledefi.xyz)
  * @notice Implementation of a mintable and burnable NFT with role-based access controls
  */
-contract DamnValuableNFT is ERC721, ERC721Burnable {
-    uint256 public constant MINTER_ROLE = _ROLE_0;
+contract BasicNFT is ERC721, ERC721Burnable {
     uint256 public tokenIdCounter;
 
     constructor() ERC721("BasicNFT", "BASIC") {
