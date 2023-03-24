@@ -5,7 +5,6 @@ pragma solidity 0.8.19;
 import "hardhat/console.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
 import "@openzeppelin/contracts/token/ERC721/IERC721.sol";
-import "@openzeppelin/contracts/utils/Counters.sol";
 // Use openzeppelin to inherit battle-tested implementations (ERC20, ERC721, etc)
 // import "@openzeppelin/contracts/access/Ownable.sol";
 
@@ -26,7 +25,6 @@ contract EventGate is Ownable {
     }
 
     uint256 public eventIdCounter;
-    uint256 public entranceCost;
     uint256 public createEventFee;
     uint256 public entranceFee;
 
