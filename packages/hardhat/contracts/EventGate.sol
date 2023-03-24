@@ -49,7 +49,6 @@ contract EventGate is Ownable {
       bytes32 _eventHash = keccak256(abi.encode(_ticketAddress,_eventName));
       require(eventExists[_eventHash] != true, 'event already exists');
       uint256 _eventId = eventIdCounter;
-      ++eventIdCounter;
       eventHashToEventId[_eventHash] =  _eventId;
       eventExists[_eventHash] = true;
       EventInfo storage _eventInfo = events[_eventId];
@@ -62,6 +61,7 @@ contract EventGate is Ownable {
       eventsOwner[_eventId] = msg.sender; 
       emit EventCreated(_eventId, _eventHash, _ticketAddress, _eventName, msg.sender);
       if (startEvent) emit EventStarted(_eventId, block.timestamp);
+      ++eventIdCounter;
       return _eventId;
     }
 
