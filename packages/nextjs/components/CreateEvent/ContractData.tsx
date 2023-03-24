@@ -10,6 +10,7 @@ export default function ContractData() {
   const [transitionEnabled, setTransitionEnabled] = useState(true);
   const [isRightDirection, setIsRightDirection] = useState(false);
   const [marqueeSpeed, setMarqueeSpeed] = useState(0);
+  const [eventReciept, setEventReceipt] = useState({})
 
   const containerRef = useRef<HTMLDivElement>(null);
   const greetingRef = useRef<HTMLDivElement>(null);
@@ -24,6 +25,12 @@ export default function ContractData() {
   useScaffoldEventSubscriber("YourContract", "GreetingChange", (greetingSetter, newGreeting, premium, value) => {
     console.log(greetingSetter, newGreeting, premium, value);
   });
+  useScaffoldEventSubscriber("EventGate", "EventCreated", (eventId, eventHash, ticketAddress, eventName, eventOwner) => {
+    console.log(eventId, eventHash, ticketAddress, eventName, eventOwner);
+    setEventReceipt({...eventReciept, "eventId": eventId, "eventHash":eventHash, "ticketAddress": ticketAddress, 
+                      "eventName": eventName, "eventOwner": eventOwner})
+  });
+
 
   const { showAnimation } = useAnimationConfig(totalCounter);
 
@@ -44,19 +51,7 @@ export default function ContractData() {
           showAnimation ? "animate-zoom" : ""
         }`}
       >
-        <div className="flex justify-between w-full">
-          <button
-            className="btn btn-circle btn-ghost relative bg-center bg-[url('/assets/switch-button-on.png')] bg-no-repeat"
-            onClick={() => {
-              setTransitionEnabled(!transitionEnabled);
-            }}
-          >
-            <div
-              className={`absolute inset-0 bg-center bg-no-repeat bg-[url('/assets/switch-button-off.png')] transition-opacity ${
-                transitionEnabled ? "opacity-0" : "opacity-100"
-              }`}
-            />
-          </button>
+        <div className="flex justify-end w-full">
           <div className="bg-secondary border border-primary rounded-xl flex">
             <div className="p-2 py-1 border-r border-primary flex items-end">Total count</div>
             <div className="text-4xl text-right min-w-[3rem] px-2 py-1 flex justify-end font-bai-jamjuree">
@@ -86,27 +81,6 @@ export default function ContractData() {
                 </Marquee>
               );
             })}
-          </div>
-        </div>
-
-        <div className="mt-3 flex items-end justify-between">
-          <button
-            className={`btn btn-circle btn-ghost border border-primary hover:border-primary w-12 h-12 p-1 bg-neutral flex items-center ${
-              isRightDirection ? "justify-start" : "justify-end"
-            }`}
-            onClick={() => {
-              if (transitionEnabled) {
-                setIsRightDirection(!isRightDirection);
-              }
-            }}
-          >
-            <div className="border border-primary rounded-full bg-secondary w-2 h-2" />
-          </button>
-          <div className="w-44 p-0.5 flex items-center bg-neutral border border-primary rounded-full">
-            <div
-              className="h-1.5 border border-primary rounded-full bg-secondary animate-grow"
-              style={{ animationPlayState: showTransition ? "running" : "paused" }}
-            />
           </div>
         </div>
       </div>
