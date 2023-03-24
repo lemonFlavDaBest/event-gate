@@ -27,7 +27,8 @@ contract EventGate is Ownable {
 
     uint256 public eventIdCounter;
     uint256 public entranceCost;
-    uint256 public createEventCost;
+    uint256 public createEventFee;
+    uint256 public entranceFee;
 
     mapping(uint256 => EventInfo) public events;
     mapping(bytes32 => uint256) public eventHashToEventId;
@@ -43,7 +44,10 @@ contract EventGate is Ownable {
     event EventStarted(uint256 indexed eventId, uint256 time);
     event EventFinished(uint256 indexed eventId, uint256 time);
 
-    constructor(){}
+    constructor(uint256 _createEventFee, uint256 _entranceFee){
+      createEventFee = _createEventFee; // .001 ether
+      entranceFee = _entranceFee; // 1 wei
+    }
 
     function createEvent(address _ticketAddress, string calldata _eventName, bool startEvent) external returns(uint256){
       bytes32 _eventHash = keccak256(abi.encode(_ticketAddress,_eventName));
