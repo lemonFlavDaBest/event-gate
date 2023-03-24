@@ -13,7 +13,7 @@ export default function ContractInteraction() {
   const [startEvent, setStartEvent] = useState(false);
 
   //const { writeAsync, isLoading } = useScaffoldContractWrite("YourContract", "setGreeting", [newGreeting], "0.01");
-  const { writeAsync, isLoading } = useScaffoldContractWrite("EventGate", "createEvent", [ticketAddress, eventName, startEvent], );
+  const { writeAsync, isLoading } = useScaffoldContractWrite("EventGate", "createEvent", [ticketAddress, eventName, startEvent],  "0.01");
 
   return (
     <div className="flex bg-base-300 relative pb-10">
@@ -27,7 +27,7 @@ export default function ContractInteraction() {
           <div className="mt-8 flex flex-col flex-row items-start sm:items-center gap-2 sm:gap-5">
             <input
               type="text"
-              placeholder="ticket contract here"
+              placeholder="Enter contract here"
               className="input font-bai-jamjuree w-full px-5 bg-[url('/assets/gradient-bg.png')] bg-[length:100%_100%] border border-primary text-lg sm:text-2xl placeholder-white uppercase"
               onChange={e => setTicketAddress(e.target.value)}
             />
@@ -37,11 +37,12 @@ export default function ContractInteraction() {
               className="input font-bai-jamjuree w-full px-5 bg-[url('/assets/gradient-bg.png')] bg-[length:100%_100%] border border-primary text-lg sm:text-2xl placeholder-white uppercase"
               onChange={e => setEventName(e.target.value)}
             />
-            <label className="swap"> 
-              <input type="checkbox" onChange={() => setStartEvent(!startEvent)}/> 
-              <div className="swap-on">START EVENT NOW</div>
-              <div className="swap-off">START EVENT LATER</div>
-            </label>
+            <div className="form-control">
+              <label className="label cursor-pointer">
+                <span className="label-text">Start Event Now? </span> 
+                <input type="checkbox" checked={startEvent} onChange = {() => setStartEvent(!startEvent)} className="checkbox checkbox-secondary" />
+              </label>
+            </div>
             <div className="flex rounded-full border border-primary p-1 flex-shrink-0">
               <div className="flex rounded-full border-2 border-primary p-1">
                 <button
@@ -62,7 +63,7 @@ export default function ContractInteraction() {
 
           <div className="mt-4 flex gap-2 items-start">
             <span className="text-sm leading-tight">Price:</span>
-            <div className="badge badge-warning">just Gas :)</div>
+            <div className="badge badge-warning">.001 ETH + Gas</div>
           </div>
         </div>
       </div>
