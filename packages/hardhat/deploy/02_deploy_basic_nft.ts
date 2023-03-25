@@ -7,7 +7,7 @@ import { DeployFunction } from "hardhat-deploy/types";
  *
  * @param hre HardhatRuntimeEnvironment object.
  */
-const deployBasicNFT: DeployFunction = async function (hre: HardhatRuntimeEnvironment) {
+const deployETHGlobalTicket: DeployFunction = async function (hre: HardhatRuntimeEnvironment) {
   /*
     On localhost, the deployer account is the one that comes with Hardhat, which is already funded.
 
@@ -21,7 +21,7 @@ const deployBasicNFT: DeployFunction = async function (hre: HardhatRuntimeEnviro
   const { deployer } = await hre.getNamedAccounts();
   const { deploy } = hre.deployments;
 
-  await deploy("BasicNFT", {
+  await deploy("ETHGlobalTicket", {
     from: deployer,
     // Contract constructor arguments
     log: true,
@@ -34,8 +34,8 @@ const deployBasicNFT: DeployFunction = async function (hre: HardhatRuntimeEnviro
   // const yourContract = await hre.ethers.getContract("YourContract", deployer);
 };
 
-export default deployBasicNFT;
+export default deployETHGlobalTicket;
 
 // Tags are useful if you have multiple deploy files and only want to run one of them.
 // e.g. yarn deploy --tags EventGate
-deployBasicNFT.tags = ["BasicNFT"];
+deployETHGlobalTicket.tags = ["ETHGlobalTicket"];
