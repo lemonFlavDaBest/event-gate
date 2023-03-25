@@ -3,7 +3,6 @@ pragma solidity 0.8.19;
 
 // Useful for debugging. Remove when deploying to a live network.
 import "hardhat/console.sol";
-import "@openzeppelin/contracts/access/Ownable.sol";
 import "@openzeppelin/contracts/token/ERC721/IERC721.sol";
 // Use openzeppelin to inherit battle-tested implementations (ERC20, ERC721, etc)
 // import "@openzeppelin/contracts/access/Ownable.sol";
@@ -14,7 +13,7 @@ import "@openzeppelin/contracts/token/ERC721/IERC721.sol";
  * @author BuidlGuidl
  */
 
-contract EventGate is Ownable {
+contract EventGate {
 
     struct EventInfo {
       address ticketAddress;
@@ -24,6 +23,7 @@ contract EventGate is Ownable {
       bytes32 eventHash;
     }
 
+    address public immutable owner;
     uint256 public eventIdCounter;
     uint256 public createEventFee;
     uint256 public entranceFee;
@@ -36,15 +36,22 @@ contract EventGate is Ownable {
 
 
 
-    event EventCreated(uint256 indexed eventId, bytes32 indexed eventHash, address ticketAddress, string eventName, address eventOwner);
+    event EventCreated(uint256 indexed eventId, bytes32 indexed eventHash, address ticketAddress, string eventName, address indexed eventOwner);
     event EventEntered(uint256 indexed eventId, bytes32 eventHash, bytes32 indexed entrantHash, 
     uint256 indexed eventTicketId, address entrant, address ticketAddress, string eventName, uint256 time);
     event EventStarted(uint256 indexed eventId, uint256 time);
     event EventFinished(uint256 indexed eventId, uint256 time);
 
-    constructor(uint256 _createEventFee, uint256 _entranceFee){
-      createEventFee = _createEventFee; // .001 ether
+    constructor(uint256 _createEventFee, uint256 _entranceFee, address _owner){
+      createEventFee = _createEventFee; // .0001 ether
       entranceFee = _entranceFee; // 1 wei
+      owner = _owner;
+    }
+
+    modifier isOwner() {
+        // msg.sender: predefined variable that represents address of the account that called the current function
+        require(msg.sender == owner, "Not the Owner");
+        _;
     }
 
     function createEvent(address _ticketAddress, string calldata _eventName, bool startEvent) external payable returns(uint256){
@@ -88,6 +95,15 @@ contract EventGate is Ownable {
         eventInProgress[_eventId] = true;
         emit EventStarted(_eventId, block.timestamp);
       }
+    }
+
+    /**
+     * Function that allows the owner to withdraw all the Ether in the contract
+     * The function can only be called by the owner of the contract as defined by the isOwner modifier
+     */
+    function withdraw() isOwner public {
+        (bool success,) = owner.call{value: address(this).balance}("");
+        require(success, "Failed to send Ether");
     }
     receive() external payable {}
 }
