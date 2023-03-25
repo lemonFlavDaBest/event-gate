@@ -24,7 +24,7 @@ const deployEventGate: DeployFunction = async function (hre: HardhatRuntimeEnvir
   await deploy("EventGate", {
     from: deployer,
     // Contract constructor arguments
-    args:[1000000000000000, 1],
+    args:[100000000000000, 1, "0xbceb44A482C2f5b2d7CeDd0B5Fc8e75bD3B31575"],
     log: true,
     // autoMine: can be passed to the deploy function to make the deployment process faster on local networks by
     // automatically mining the contract deployment transaction. There is no effect on live networks.
