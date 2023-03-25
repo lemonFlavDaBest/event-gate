@@ -47,7 +47,8 @@ contract EventGate is Ownable {
       entranceFee = _entranceFee; // 1 wei
     }
 
-    function createEvent(address _ticketAddress, string calldata _eventName, bool startEvent) external returns(uint256){
+    function createEvent(address _ticketAddress, string calldata _eventName, bool startEvent) external payable returns(uint256){
+      require(msg.value > createEventFee, "not enough paid");
       bytes32 _eventHash = keccak256(abi.encode(_ticketAddress,_eventName));
       require(eventExists[_eventHash] != true, 'event already exists');
       uint256 _eventId = eventIdCounter;
@@ -67,7 +68,8 @@ contract EventGate is Ownable {
       return _eventId;
     }
 
-    function enterEvent(address _ticketAddress, string calldata _eventName, uint256 _eventTicketId, uint256 _eventId) external returns(bytes32){
+    function enterEvent(address _ticketAddress, string calldata _eventName, uint256 _eventTicketId, uint256 _eventId) external payable returns(bytes32){
+      require(msg.value > entranceFee, "not enough paid");
       require(IERC721(_ticketAddress).ownerOf(_eventTicketId) == msg.sender, "You must own the token you are entering with");
       bytes32 _eventHash = keccak256(abi.encode(_ticketAddress,_eventName));
       require(eventExists[_eventHash], "This event does not exist");
