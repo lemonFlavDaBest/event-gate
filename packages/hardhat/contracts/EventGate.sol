@@ -4,14 +4,11 @@ pragma solidity 0.8.19;
 // Useful for debugging. Remove when deploying to a live network.
 import "hardhat/console.sol";
 import "@openzeppelin/contracts/token/ERC721/IERC721.sol";
-// Use openzeppelin to inherit battle-tested implementations (ERC20, ERC721, etc)
-// import "@openzeppelin/contracts/access/Ownable.sol";
 
-/**
- * A smart contract that allows changing a state variable of the contract and tracking the changes
- * It also allows the owner to withdraw the Ether in the contract
- * @author BuidlGuidl
- */
+/// @title A dapp for creating events and handling the event gate
+/// @author lemonflavdabest
+/// @dev the event you are creating must have an erc721 compliant token. This allows users
+/// of that token to enter your created event
 
 contract EventGate {
 
@@ -54,6 +51,12 @@ contract EventGate {
         _;
     }
 
+     /// @notice creates an event for an erc721 contract(ie _ticketAddress) with a given event
+    /// @dev you can set startEvent to false, if you only want be to enter during a given period
+    /// @param _ticketAddress the erc721 contract for the event you are creating. it can be a ticket (e.g. ETHGlobalTicket)
+    /// or NFT community contract (e.g. Pudgy Penguins, BAYC, Azuki, etc.)
+    /// @param _eventName the name of the event you want to create
+    /// @return eventId. this will be how to find your event, get info about it, etc.
     function createEvent(address _ticketAddress, string calldata _eventName, bool startEvent) external payable returns(uint256){
       require(msg.value > createEventFee, "not enough paid");
       bytes32 _eventHash = keccak256(abi.encode(_ticketAddress,_eventName));
@@ -75,6 +78,15 @@ contract EventGate {
       return _eventId;
     }
 
+   /// @notice this function sends a transaction verifying the caller's ownership of an erc721(_ticketAddress) token(_eventTicketId).
+   /// upon verifying ownership (and other validation) it will Emit an Event that signals entrance into an (irl) event.
+    /// @dev the price is 1 gwei in order to prevent people spamming enter event.
+    /// @param _ticketAddress the erc721 contract for the event. 
+    /// @param _eventName the name of the event you want to enter
+    /// @param _eventTicketId a token you own from the erc721 contract(_ticketAddresst) that will grant you access into the event
+    /// @param _eventId each event's id
+    /// @return entrantHash. entrant hash is a unique identifier for each person entering. This can be used to check and verify any potential
+    /// funny business
     function enterEvent(address _ticketAddress, string calldata _eventName, uint256 _eventTicketId, uint256 _eventId) external payable returns(bytes32){
       require(msg.value > entranceFee, "not enough paid");
       require(IERC721(_ticketAddress).ownerOf(_eventTicketId) == msg.sender, "You must own the token you are entering with");
@@ -86,6 +98,8 @@ contract EventGate {
       return _entrantHash;
     }
 
+    //Changes whether an event is in progress. ie(in progress --> paused, and vice versa).
+    //can only be called by the event's creator
     function changeEventStatus(uint256 _eventId) external {
       require(eventsOwner[_eventId] == msg.sender, "only event owner can call");
       if (eventInProgress[_eventId]) {
