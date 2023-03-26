@@ -108,9 +108,10 @@ export default function ContractData() {
         
         <div className="card mt-3 border border-primary bg-neutral rounded-3xl w-90 bg-base-100 shadow-xl">
           <figure className="px-10 pt-10">
-            <img src='https://openmoji.org/data/color/svg/2714.svg' alt="DJ man" className="rounded-xl" />
+            <img src='https://openmoji.org/data/color/svg/1F44C.svg' alt="DJ man" className="rounded-xl" />
           </figure>
           <div className="card-body items-center text-center">
+            <h2 className="card-title">Let them in!</h2>
             <h2 className="card-title">{eventInfo[1]}</h2>
             <h3 className="card-title">{id}</h3>
             <p style={{fontSize: 8}}>Ticket: {eventInfo[0]}</p>

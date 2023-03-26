@@ -1,29 +1,18 @@
-import { SetStateAction, useEffect, useRef, useState } from "react";
+import {useState } from "react";
 import { useScaffoldContractRead, useScaffoldEventSubscriber, useScaffoldContractWrite } from "~~/hooks/scaffold-eth";
-import { BigNumber } from "ethers";
 import { useAnimationConfig } from "~~/hooks/scaffold-eth/useAnimationConfig";
-import { Address, Unit } from "wagmi";
-import { Connector, useAccount, useConnect } from "wagmi";
+import { useAccount } from "wagmi";
 import Link from "next/link";
 
 
-const MARQUEE_PERIOD_IN_SEC = 5;
 
 export default function ContractData() {
-  const { address, isConnecting, isDisconnected } = useAccount()
-  const [transitionEnabled, setTransitionEnabled] = useState(true);
-  //const [isRightDirection, setIsRightDirection] = useState(false);
-  const [marqueeSpeed, setMarqueeSpeed] = useState(0);
+  const { address } = useAccount()
   const [eventFound, setEventFound] = useState(false);
-  const [eventReciept, setEventReciept] = useState({})
-  const [deventId, setDeventId] = useState('')
   const [deventHash, setDeventHash] = useState('')
   const [dTicketAddress, setDTicketAddress] = useState('')
   const [deventName, setDeventName] = useState('')
-  const [deventOwner, setDeventOwner] = useState('')
 
-  const containerRef = useRef(null);
-  const greetingRef = useRef(null);
 
   const { data: totalCounter } = useScaffoldContractRead("YourContract", "totalCounter");
   const { data: eventIdCounter } = useScaffoldContractRead("EventGate", "eventIdCounter");
@@ -33,14 +22,10 @@ export default function ContractData() {
   useScaffoldEventSubscriber("EventGate", "EventCreated", (eventId, eventHash, ticketAddress, eventName, eventOwner) => {
     if(eventOwner == address ){
     console.log(eventId.toNumber(), eventHash, ticketAddress, eventName, eventOwner);
-    setDeventId(eventId.toNumber())
     setDeventHash(eventHash)
     setDTicketAddress(ticketAddress)
     setDeventName(eventName)
-    setDeventOwner(eventOwner)
-    setEventReciept({"eventId" : eventId , "eventHash": eventHash, "ticketAddress": ticketAddress, "eventName":eventName,
-      "eventOwner": eventOwner});
-      setEventFound(true);
+    setEventFound(true);
     }
   }, true);
 

@@ -1,45 +1,33 @@
-import { SetStateAction, useEffect, useRef, useState } from "react";
+import { useEffect,  useState } from "react";
 import { useScaffoldContractRead, useScaffoldEventSubscriber, useScaffoldContractWrite } from "~~/hooks/scaffold-eth";
-import { BigNumber } from "ethers";
-import { useAnimationConfig } from "~~/hooks/scaffold-eth/useAnimationConfig";
 
-import { Address, Unit } from "wagmi";
-import { Connector, useAccount, useConnect } from "wagmi";
-import Link from "next/link";
+import { useAccount} from "wagmi";
+
 import { useRouter } from 'next/router'
 
 
-const MARQUEE_PERIOD_IN_SEC = 5;
 
 export default function ContractData() {
   const router = useRouter()
   const id = router.query.event
-  const { address, isConnecting, isDisconnected } = useAccount()
-  const [transitionEnabled, setTransitionEnabled] = useState(true);
-  //const [isRightDirection, setIsRightDirection] = useState(false);
-  const [marqueeSpeed, setMarqueeSpeed] = useState(0);
-  const [eventFound, setEventFound] = useState(false);
-  const [eventReciept, setEventReciept] = useState({})
-  const [deventId, setDeventId] = useState('')
-  const [deventHash, setDeventHash] = useState('')
+  const { address } = useAccount()
+  
+  
   const [dTicketAddress, setDTicketAddress] = useState('')
-  const [deventName, setDeventName] = useState('')
-  const [deventOwner, setDeventOwner] = useState('')
+  
   const [entered, setEntered] = useState(false)
-  const [eventsHash, setEventsHash] = useState()
+  
   const [entrantsHash, setEntrantsHash] = useState('')
-  const [contractAddress, setContractAddress] = useState()
+ 
   const [eventsName, setEventsName] = useState()
   const [tokenId, setTokenId] = useState()
   const [saved, setSaved] = useState(true)
 
-  const containerRef = useRef(null);
-  const greetingRef = useRef(null);
+
 
   const { data: eventInfo } = useScaffoldContractRead("EventGate", "events", [id]);
-  const { data: totalCounter } = useScaffoldContractRead("YourContract", "totalCounter");
-  const { data: eventIdCounter } = useScaffoldContractRead("EventGate", "eventIdCounter");
-  const { writeAsync, isLoading } = useScaffoldContractWrite("EventGate", "enterEvent", [dTicketAddress, eventsName, tokenId, id],  '0.000000000000000002');
+  
+  const { writeAsync } = useScaffoldContractWrite("EventGate", "enterEvent", [dTicketAddress, eventsName, tokenId, id],  '0.000000000000000002');
 
 
  
@@ -47,9 +35,7 @@ export default function ContractData() {
   useScaffoldEventSubscriber("EventGate", "EventEntered", (eventId, eventHash, entrantHash, eventTicketId, entrant, ticketAddress, eventName, time) => {
     if(entrant == address ){
       setEntered(true)
-      setEventsHash(eventHash)
       setEntrantsHash(entrantHash)
-      setContractAddress(ticketAddress)
       setEventsName(eventName)
     }
   }, true);
@@ -62,18 +48,6 @@ export default function ContractData() {
   }, [eventInfo])
 
 
-
-  const { showAnimation } = useAnimationConfig(totalCounter);
-
-  //const showTransition = transitionEnabled && !!currentGreeting && !isGreetingLoading;
-
-  useEffect(() => {
-    if (transitionEnabled && containerRef.current && greetingRef.current) {
-      setMarqueeSpeed(
-        Math.max(greetingRef.current.clientWidth, containerRef.current.clientWidth) / MARQUEE_PERIOD_IN_SEC,
-      );
-    }
-  }, [transitionEnabled, containerRef, greetingRef]);
 
   return (
     
@@ -123,6 +97,7 @@ export default function ContractData() {
             <img src='https://openmoji.org/data/color/svg/2714.svg' alt="DJ man" className="rounded-xl" />
           </figure>
           <div className="card-body items-center text-center">
+            <h2 className="card-title">It worked!</h2>
             <h2 className="card-title">{eventInfo[1]}</h2>
             <h3 className="card-title">{id}</h3>
             <p style={{fontSize: 8}}>Ticket: {eventInfo[0]}</p>
