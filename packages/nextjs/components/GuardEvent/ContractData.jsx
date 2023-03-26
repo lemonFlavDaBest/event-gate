@@ -1,68 +1,26 @@
-import { SetStateAction, useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useScaffoldContractRead, useScaffoldEventSubscriber, useScaffoldContractWrite } from "~~/hooks/scaffold-eth";
-import { BigNumber } from "ethers";
-import { useAnimationConfig } from "~~/hooks/scaffold-eth/useAnimationConfig";
-
-import { Address, Unit } from "wagmi";
-import { Connector, useAccount, useConnect } from "wagmi";
-import Link from "next/link";
 import { useRouter } from 'next/router'
-
-
-const MARQUEE_PERIOD_IN_SEC = 5;
 
 export default function ContractData() {
   const router = useRouter()
   const id = router.query.event
-  const { address, isConnecting, isDisconnected } = useAccount()
-  const [transitionEnabled, setTransitionEnabled] = useState(true);
-  //const [isRightDirection, setIsRightDirection] = useState(false);
-  const [marqueeSpeed, setMarqueeSpeed] = useState(0);
-  const [eventFound, setEventFound] = useState(false);
-  const [eventReciept, setEventReciept] = useState({})
-  const [deventId, setDeventId] = useState('')
-  const [deventHash, setDeventHash] = useState('')
-  const [dTicketAddress, setDTicketAddress] = useState('')
-  const [deventName, setDeventName] = useState('')
-  const [deventOwner, setDeventOwner] = useState('')
   const [entered, setEntered] = useState(false)
-  const [entrants, setEntrants] = useState('')
-  const [eventsHash, setEventsHash] = useState()
   const [entrantsHash, setEntrantsHash] = useState('')
-  const [contractAddress, setContractAddress] = useState()
-  const [eventsName, setEventsName] = useState()
   const [tokenId, setTokenId] = useState()
   const [saved, setSaved] = useState(true)
 
-  const containerRef = useRef(null);
-  const greetingRef = useRef(null);
 
   const { data: eventInfo } = useScaffoldContractRead("EventGate", "events", [id]);
-  const { data: totalCounter } = useScaffoldContractRead("YourContract", "totalCounter");
-  const { data: eventIdCounter } = useScaffoldContractRead("EventGate", "eventIdCounter");
-  const { writeAsync, isLoading } = useScaffoldContractWrite("EventGate", "enterEvent", [dTicketAddress, eventsName, tokenId, id],  '0.000000000000000002');
-
-
- 
 
   useScaffoldEventSubscriber("EventGate", "EventEntered", (eventId, eventHash, entrantHash, eventTicketId, entrant, ticketAddress, eventName, time) => {
     console.log("eventTicketId:", eventTicketId.toString())
     if(tokenId == eventTicketId.toString() ){
       setEntered(true)
-      setEventsHash(eventHash)
       setEntrantsHash(entrantHash)
-      setContractAddress(ticketAddress)
       setEntrants(entrant)
-      setEventsName(eventName)
     }
   }, true);
-
-  useEffect(() => {
-    if (eventInfo){
-    setDTicketAddress(eventInfo[0])
-    setEventsName(eventInfo[1])
-    }
-  }, [eventInfo])
 
   return (
     

@@ -1,42 +1,14 @@
-import { SetStateAction, useEffect, useRef, useState } from "react";
-import { useScaffoldContractRead, useScaffoldEventSubscriber, useScaffoldContractWrite } from "~~/hooks/scaffold-eth";
-import { BigNumber } from "ethers";
-import { useAnimationConfig } from "~~/hooks/scaffold-eth/useAnimationConfig";
-import { Address, Unit } from "wagmi";
-import { Connector, useAccount, useConnect } from "wagmi";
-import Link from "next/link";
+import { useScaffoldContractRead, useScaffoldContractWrite } from "~~/hooks/scaffold-eth";
 import { useRouter } from 'next/router'
-
-
-const MARQUEE_PERIOD_IN_SEC = 5;
 
 export default function ContractData() {
   const router = useRouter()
   const id = router.query.event
-  const { address, isConnecting, isDisconnected } = useAccount()
-  const [transitionEnabled, setTransitionEnabled] = useState(true);
-  //const [isRightDirection, setIsRightDirection] = useState(false);
-  const [marqueeSpeed, setMarqueeSpeed] = useState(0);
-  const [eventFound, setEventFound] = useState(false);
-  const [eventReciept, setEventReciept] = useState({})
-  const [deventId, setDeventId] = useState('')
-  const [deventHash, setDeventHash] = useState('')
-  const [dTicketAddress, setDTicketAddress] = useState('')
-  const [deventName, setDeventName] = useState('')
-  const [deventOwner, setDeventOwner] = useState('')
-
-  const containerRef = useRef(null);
-  const greetingRef = useRef(null);
 
   const { data: eventInfo } = useScaffoldContractRead("EventGate", "events", [id]);
   const { data: eventStarted } = useScaffoldContractRead("EventGate", "eventInProgress", [id]);
   const { writeAsync, isLoading } = useScaffoldContractWrite("EventGate", "changeEventStatus", [id]);
   console.log("eventInfo:", eventInfo)
-
- 
-
-
-
 
   return (
     
