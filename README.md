@@ -19,6 +19,6 @@ dEvent is a dapp meant to be used for event ticketing in web3. Our aim is to bri
 4) Click Enter Event ..... and you're ready to party!
 
 ## How it's Made
-This project is designed as an L2 dapp because it requires the speed and cost that a L1 could not provide. The smart contract is mean to be cheap, lightweight, and quick. In order to work effectively, our dapp relies on Event/Emit in solidity and monitoring those events on the front end. By focusing on events in our smart contract, we make it cheaper and quicker for users.
+This project is designed as an L2 dapp because it requires the speed and cost that a L1 could not provide. The smart contract is meant to be cheap, lightweight, and quick (KISS). In order to work effectively, our dapp relies on Event/Emit in solidity and monitoring those events on the front end. By focusing on events in our smart contract, we make it cheaper and faster for users.
 
 Our project is a monorepo built from Scaffold-eth v2. As a one person team, I needed to be strategic about where I spent time. Scaffold-eth does a great job of being able to spin up smart contracts with a front end quickly. So, many thanks go out to Scaffold-eth for helping me in this project.
