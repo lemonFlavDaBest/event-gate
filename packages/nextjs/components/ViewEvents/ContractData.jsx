@@ -1,19 +1,14 @@
 const { Alchemy, Network, Utils } = require('alchemy-sdk');
-import { useEffect, useRef, useState } from "react";
-import Marquee from "react-fast-marquee";
-import { useScaffoldContractRead, useScaffoldEventSubscriber } from "~~/hooks/scaffold-eth";
+import { useEffect, useState } from "react";
 import { BigNumber, utils } from "ethers";
-import { useAnimationConfig } from "~~/hooks/scaffold-eth/useAnimationConfig";
-import { Connector, useAccount, useConnect } from "wagmi";
-import { AbiCoder } from "ethers/lib/utils.js";
+import { useAccount } from "wagmi";
 import Link from "next/link";
 
-const MARQUEE_PERIOD_IN_SEC = 5;
 
 export default function ContractData() {
 
 const abi = utils.defaultAbiCoder;
-const { address, isConnecting, isDisconnected } = useAccount()
+const { address } = useAccount()
 const settings = {
   apiKey: process.env.NEXT_PUBLIC_ALCHEMY_API_KEY,
   network: Network.ETH_SEPOLIA,
@@ -458,32 +453,8 @@ async function getMyDevents() {
 }
 
 
-  const [transitionEnabled, setTransitionEnabled] = useState(true);
   const [logsRetrieved, setLogsRetrieved] = useState(false)
-  const [isRightDirection, setIsRightDirection] = useState(false);
-  const [marqueeSpeed, setMarqueeSpeed] = useState(0);
-  const [eventHash, setEventHash] = useState()
-  const [eventData, setEventData] = useState([])
   const [responseData, setResponseData] = useState([])
-
-  const containerRef = useRef(null);
-  const greetingRef = useRef(null);
-
-  const { data: totalCounter } = useScaffoldContractRead("YourContract", "totalCounter");
-  const { data: findEventId } = useScaffoldContractRead("EventGate", "eventHashToEventId", [eventHash]);
-
-  const { data: currentGreeting, isLoading: isGreetingLoading } = useScaffoldContractRead(
-    "YourContract",
-    "greeting",
-  );
-
-  useScaffoldEventSubscriber("YourContract", "GreetingChange", (greetingSetter, newGreeting, premium, value) => {
-    console.log(greetingSetter, newGreeting, premium, value);
-  });
-
-  const { showAnimation } = useAnimationConfig(totalCounter);
-
-  const showTransition = transitionEnabled && !!currentGreeting && !isGreetingLoading;
 
   useEffect(() => {
     getMyDevents()

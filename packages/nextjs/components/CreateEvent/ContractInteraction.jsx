@@ -1,4 +1,4 @@
-import { ArrowSmallRightIcon, XMarkIcon } from "@heroicons/react/24/outline";
+import { ArrowSmallRightIcon} from "@heroicons/react/24/outline";
 import { useState } from "react";
 import { useScaffoldContractWrite } from "~~/hooks/scaffold-eth";
 
@@ -9,7 +9,6 @@ export default function ContractInteraction() {
   const [ticketAddress, setTicketAddress] = useState("");
   const [startEvent, setStartEvent] = useState(false);
 
-  //const { writeAsync, isLoading } = useScaffoldContractWrite("YourContract", "setGreeting", [newGreeting], "0.01");
   const { writeAsync, isLoading } = useScaffoldContractWrite("EventGate", "createEvent", [ticketAddress, eventName, startEvent],  "0.001");
 
   return (

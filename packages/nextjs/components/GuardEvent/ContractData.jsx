@@ -1,5 +1,5 @@
-import { useEffect, useRef, useState } from "react";
-import { useScaffoldContractRead, useScaffoldEventSubscriber, useScaffoldContractWrite } from "~~/hooks/scaffold-eth";
+import { useState } from "react";
+import { useScaffoldContractRead, useScaffoldEventSubscriber} from "~~/hooks/scaffold-eth";
 import { useRouter } from 'next/router'
 
 export default function ContractData() {
