@@ -7,7 +7,7 @@ dEvent is a dapp meant to be used for event ticketing in web3. Our aim is to bri
 
 ### For event planners:
 
-1)Simply create your event with the correct contract address(ticket/nft address) you want to check for and an event name.
+1) Simply create your event with the correct contract address(ticket/nft address) you want to check for and an event name.
 2) Once you want ticketing/admissions to begin, make sure your event has started in the contract, so that people can enter. This can be done easily through our ui.
 3) Have the person in charge of admissions/ticketing navigate to url.../guard/YOUR_EVENT_ID.
 4) Ask the entrant for their token id..... wait a couple seconds... and let them in
