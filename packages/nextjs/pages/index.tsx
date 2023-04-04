@@ -12,8 +12,9 @@ const Home: NextPage = () => {
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link href="https://fonts.googleapis.com/css2?family=Dosis&display=swap" rel="stylesheet" />
       </Head>
-      
-      <div className="flex items-center bg-[url('/assets/gradient-2.png')] bg-[length:100%_100%] flex-col flex-grow pt-10 lg:py-auto max-w-[100vw]">
+      <img src='image.png' className="absolute top-24"></img>
+      <div className="flex bg-[url('/assets/gradient-2.png')] bg-[length:100%_100%] flex-col flex-grow pt-10 lg:py-auto max-w-[100vw]">
+        
         <div className="px-5 py-20">
           <h1 className="text-center mb-8">
             <span className="block text-2xl mb-2">Welcome to</span>
