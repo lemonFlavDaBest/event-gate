@@ -1,24 +1,24 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: ["./pages/**/*.{js,ts,jsx,tsx}", "./components/**/*.{js,ts,jsx,tsx}", "./utils/**/*.{js,ts,jsx,tsx}"],
-  plugins: [require("daisyui")],
+  plugins: [require("@tailwindcss/typography"), require("daisyui")],
   darkTheme: "scaffoldEthDark",
   // DaisyUI theme colors
   daisyui: {
     themes: [
       {
         scaffoldEth: {
-          primary: "#93BBFB",
+          primary: "#98C9A3",
           "primary-content": "#212638",
-          secondary: "#DAE8FF",
+          secondary: "#77BFA3",
           "secondary-content": "#212638",
-          accent: "#93BBFB",
+          accent: "#77BFA3",
           "accent-content": "#212638",
           neutral: "#212638",
           "neutral-content": "#ffffff",
-          "base-100": "#ffffff",
-          "base-200": "#F9FBFF",
-          "base-300": "#DAE8FF",
+          "base-100": "#EDEEC9",
+          "base-200": "#DDE7C7",
+          "base-300": "#BFD8BD",
           "base-content": "#212638",
           info: "#93BBFB",
           success: "#34EEB6",
@@ -34,11 +34,11 @@ module.exports = {
       },
       {
         scaffoldEthDark: {
-          primary: "#212638",
+          primary: "#98C9A3",
           "primary-content": "#F9FBFF",
-          secondary: "#2A3655",
+          secondary: "#77BFA3",
           "secondary-content": "#F9FBFF",
-          accent: "#4969A6",
+          accent: "#77BFA3",
           "accent-content": "#F9FBFF",
           neutral: "#F9FBFF",
           "neutral-content": "#385183",
@@ -91,7 +91,7 @@ module.exports = {
     // Extend Tailwind classes (e.g. font-bai-jamjuree, animate-grow)
     extend: {
       fontFamily: {
-        "bai-jamjuree": ["Bai Jamjuree", "sans-serif"],
+        'sans':['Dosis', 'sans-serif'], 
       },
       keyframes: {
         grow: {
