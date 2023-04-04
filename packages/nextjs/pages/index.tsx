@@ -12,40 +12,27 @@ const Home: NextPage = () => {
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link href="https://fonts.googleapis.com/css2?family=Dosis&display=swap" rel="stylesheet" />
       </Head>
-
-      <div className="flex items-center flex-col flex-grow pt-10">
-        <div className="px-5">
+      
+      <div className="flex items-center bg-[url('/assets/gradient-bg.png')] bg-[length:100%_100%] flex-col flex-grow pt-10 lg:py-auto max-w-[100vw]">
+        <div className="px-5 py-20">
           <h1 className="text-center mb-8">
             <span className="block text-2xl mb-2">Welcome to</span>
-            <span className="block text-4xl font-bold">dEvents</span>
+            <span className="block text-8xl font-bold">dEvents</span>
           </h1>
         </div>
-        <h3></h3>
-
-        <div className="flex-grow bg-base-300 w-full mt-16 px-8 py-12">
-          <div className="flex justify-center items-center gap-12 flex-col sm:flex-row">
-            <div className="flex flex-col bg-base-100 px-10 py-10 text-center items-center max-w-xs rounded-3xl">
-              
-              <p>
-                Start by creating your event {" "}
-                <Link href="/create-event" passHref className="link">
-                   here
-                </Link>
-                
-              </p>
-            </div>
-            <div className="flex flex-col bg-base-100 px-10 py-10 text-center items-center max-w-xs rounded-3xl">
-              <p>
-                View {" "}
-                <Link href="/example-ui" passHref className="link">
-                  My Events
-                </Link>{" "}
-                
-              </p>
-            </div>
-          </div>
+        <div className="px-5 py-20">
+          <h2 className="text-center mb-8">
+            <span className="block text-2xl mb-2">Welcome to</span>
+            <span className="block text-8xl font-bold">dEvents</span>
+          </h2>   
         </div>
-      </div>
+        <div className="px-5 py-20">
+          <h2 className="text-center mb-8">
+            <span className="block text-2xl mb-2">Welcome to</span>
+            <span className="block text-8xl font-bold">dEvents</span>
+          </h2>   
+        </div>
+    </div>
     </>
   );
 };
