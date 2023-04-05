@@ -13,7 +13,7 @@ const Home: NextPage = () => {
         <link href="https://fonts.googleapis.com/css2?family=Dosis&display=swap" rel="stylesheet" />
       </Head>
       
-      <div className="flex bg-[url('/assets/gradient-2.png')] bg-[length:100%_100%] flex-col flex-grow pt-10 lg:py-auto max-w-[100vw]">
+      <div className="flex bg-[url('/assets/gradient-4.png')] bg-[length:100%_100%] flex-col flex-grow pt-10 lg:py-auto max-w-[100vw]">
       
       
 
@@ -23,7 +23,7 @@ const Home: NextPage = () => {
             <h1 className="text-center mt-4 mb-8">
             <span className="block text-2xl mb-2">Welcome to</span>
               <span className="block text-6xl font-bold mb-2">d<span className="text-8xl">Events</span></span>
-              <span className="block text-2xl  font-bold mt-2">Ticketing + Admissions</span>
+              <span className="block text-2xl  font-bold mt-2">Ticketing + Admissions.</span>
             </h1>
           
         </div>
@@ -33,8 +33,9 @@ const Home: NextPage = () => {
         </div>
         <div className="px-5 py-20">
           <h2 className="text-center mb-8">
-            <span className="block text-2xl mb-2">Event Ticketing</span>
-            <span className="block text-2xl font-bold">And Admissions</span>
+            <span className="block text-3xl font-bold mt-2">Ticket and Admissions</span>
+            <span className="block text-4xl font-bold mb-2">simple. Easy.</span>
+            <span className="block text-2xl mb-2">For Your Next Event.</span>
           </h2>   
         </div>
         <div className="px-5 py-20">
