@@ -14,18 +14,29 @@ const Home: NextPage = () => {
       </Head>
       
       <div className="flex bg-[url('/assets/gradient-2.png')] bg-[length:100%_100%] flex-col flex-grow pt-10 lg:py-auto max-w-[100vw]">
-      <div className="grid lg:grid-cols-2 items-center justify-items-center gap-5">
-        <div className="px-5 py-20">
-          <h1 className="text-center mb-8">
+      
+      
+
+      <div className="grid lg:grid-cols-2 items-center justify-items-center mt-4 mb-16">
+          <div className="px-5 py-20">
+          
+            <h1 className="text-center mt-4 mb-8">
             <span className="block text-2xl mb-2">Welcome to</span>
-            <span className="block text-8xl font-bold">dEvents</span>
-          </h1>
+              <span className="block text-8xl font-bold mb-2">dEvents</span>
+              <span className="block text-2xl  font-bold mt-2">Event Ticketing And Admissions</span>
+            </h1>
+          
         </div>
-        <div className="">
-          <img></img>  
+        <div className="mt-8">
+          <img src="https://cdn-icons-png.flaticon.com/512/2707/2707706.png"></img>  
         </div>
         </div>
-        
+        <div className="px-5 py-20">
+          <h2 className="text-center mb-8">
+            <span className="block text-2xl mb-2">Event Ticketing</span>
+            <span className="block text-2xl font-bold">And Admissions</span>
+          </h2>   
+        </div>
         <div className="px-5 py-20">
           <h2 className="text-center mb-8">
             <span className="block text-2xl mb-2">Welcome to</span>
