@@ -22,8 +22,8 @@ const Home: NextPage = () => {
           
             <h1 className="text-center mt-4 mb-8">
             <span className="block text-2xl mb-2">Welcome to</span>
-              <span className="block text-8xl font-bold mb-2">dEvents</span>
-              <span className="block text-2xl  font-bold mt-2">Event Ticketing And Admissions</span>
+              <span className="block text-6xl font-bold mb-2">d<span className="text-8xl">Events</span></span>
+              <span className="block text-2xl  font-bold mt-2">Ticketing + Admissions</span>
             </h1>
           
         </div>
