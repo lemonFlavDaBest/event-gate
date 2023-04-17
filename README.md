@@ -1,6 +1,8 @@
 # dEvents
 A solution for event ticketing. Gives users and event planners an easy interface to handle admissions for events.
 
+link: https://devent-gate-nextjs-eta.vercel.app/create-event
+
 
 ## Project Description
 dEvent is a dapp meant to be used for event ticketing in web3. Our aim is to bring you decentralized ticketing that is fast and easy. Events can created by anyone - all you need is a contract address(erc721 compliant) and a name for your event. It is meant to be very easy to setup, lightweight, and designed for mobile.
