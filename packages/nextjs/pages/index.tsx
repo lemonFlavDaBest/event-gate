@@ -13,7 +13,7 @@ const Home: NextPage = () => {
         <link href="https://fonts.googleapis.com/css2?family=Dosis&display=swap" rel="stylesheet" />
       </Head>
       
-      <div className="flex bg-[url('/assets/gradient-4.png')] bg-[length:100%_100%] flex-col flex-grow pt-10 lg:py-auto max-w-[100vw]">
+      <div className="flex bg-[url('/assets/gradient-gray.png')] bg-[length:100%_100%] flex-col flex-grow pt-10 lg:py-auto max-w-[100vw]">
       
       
 
