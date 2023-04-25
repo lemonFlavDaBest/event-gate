@@ -7,7 +7,7 @@ const Home: NextPage = () => {
   return (
     <>
       <Head>
-        <title>dEvents</title>
+        <title>Devents</title>
         <meta name="description" content="Ticket App" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link href="https://fonts.googleapis.com/css2?family=Dosis&display=swap" rel="stylesheet" />
@@ -22,8 +22,8 @@ const Home: NextPage = () => {
           
             <h1 className="text-center mt-4 mb-8">
             <span className="block text-2xl mb-2">Welcome to</span>
-              <span className="block text-6xl font-bold mb-2">d<span className="text-8xl">Events</span></span>
-              <span className="block text-2xl  font-bold mt-2">Ticketing + Admissions.</span>
+              <span className="block text-6xl font-bold mb-2"><span className="text-8xl">DEvents</span></span>
+              <span className="block text-2xl  font-bold mt-2">Ticketing + Admissions</span>
             </h1>
           
         </div>
@@ -50,9 +50,9 @@ const Home: NextPage = () => {
 					</svg>
 				</div>
 				<div className="flex flex-col justify-center max-w-3xl text-center col-span-full lg:col-span-3 lg:text-left">
-					<span className="text-xs tracking-wider uppercase dark:text-violet-400">Step 1 - Nihil</span>
-					<span className="text-xl font-bold md:text-2xl">Veritatis dolores</span>
-					<span className="mt-4 dark:text-gray-300">Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam facilis, voluptates error alias dolorem praesentium sit soluta iure incidunt labore explicabo eaque, quia architecto veritatis dolores, enim cons equatur nihil ipsum.</span>
+					<span className="text-xs tracking-wider uppercase dark:text-violet-400">Step 1 - Tickets</span>
+					<span className="text-xl font-bold md:text-2xl">You will need a valid ERC-721 contract as ticket to your event</span>
+					<span className="mt-4 dark:text-gray-300">If you already have a contract to use as a ticket, you can use that. If not, you can use our ticket factory.</span>
 				</div>
 			</div>
 			<div className="grid justify-center grid-cols-4 p-8 mx-auto space-y-8 lg:space-y-0">
