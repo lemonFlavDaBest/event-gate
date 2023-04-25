@@ -80,7 +80,7 @@ export default function Header() {
         </div>
         <div className="hidden lg:flex items-center gap-2 ml-4 mr-6">
           <div className="flex flex-col">
-            <span className="font-bold leading-tight">dEvents</span>
+            <span className="font-bold leading-tight">DEvents</span>
             <span className="text-xs">Event Ticketing</span>
           </div>
         </div>
