@@ -10,7 +10,7 @@ const ViewEvents: NextPage = () => {
         <meta name="description" content="View your events you have created" />
         {/* We are importing the font this way to lighten the size of SE2. */}
         <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link href="https://fonts.googleapis.com/css2?family=Bai+Jamjuree&display=swap" rel="stylesheet" />
+        <link href="https://fonts.googleapis.com/css2?family=Dosis&display=swap" rel="stylesheet" />
       </Head>
       <div className="grid flex-grow" data-theme="exampleUi">
         <ContractData />
