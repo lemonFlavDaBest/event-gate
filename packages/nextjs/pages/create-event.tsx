@@ -6,7 +6,7 @@ const CreateEvent: NextPage = () => {
   return (
     <>
       <Head>
-        <title>Create dEvent Ticketing</title>
+        <title>Create DEvent Ticketing</title>
         <meta name="description" content="Use dEvent ticketing for your ticketing purposes" />
         {/* We are importing the font this way to lighten the size of SE2. */}
         <link rel="preconnect" href="https://fonts.googleapis.com" />
