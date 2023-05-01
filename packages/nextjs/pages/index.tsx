@@ -80,12 +80,14 @@ const Home: NextPage = () => {
                 </svg>
               </div>
               <div className="flex flex-col justify-center max-w-3xl text-center col-span-full lg:col-span-3 lg:text-left">
-                <span className="text-xs tracking-wider uppercase dark:text-violet-400">Step 3 - View Your Event </span>
-                <span className="text-xl font-bold md:text-2xl">Dolorem praesentium</span>
+                <span className="text-xs tracking-wider uppercase dark:text-violet-400">
+                  Step 3 - View and Start Your Event{" "}
+                </span>
+                <span className="text-xl font-bold md:text-2xl">View your event and make sure it is started</span>
                 <span className="mt-4 dark:text-gray-300">
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam facilis, voluptates error alias
-                  dolorem praesentium sit soluta iure incidunt labore explicabo eaque, quia architecto veritatis
-                  dolores, enim cons equatur nihil ipsum.
+                  You can view your events and make sure everything is correct. Prior to ticketing, you need to start
+                  your event so that the contract will allow people to enter. You can do this at any time quickly and
+                  easily.
                 </span>
               </div>
             </div>
