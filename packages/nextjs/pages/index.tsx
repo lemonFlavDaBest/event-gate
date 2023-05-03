@@ -1,6 +1,7 @@
 import type { NextPage } from "next";
 import Head from "next/head";
 //import Link from "next/link";
+import Image from "next/image";
 import React from "react";
 
 const Home: NextPage = () => {
@@ -25,7 +26,7 @@ const Home: NextPage = () => {
             </h1>
           </div>
           <div className="mt-8">
-            <img src="https://cdn-icons-png.flaticon.com/512/2707/2707706.png"></img>
+            <Image src="https://cdn-icons-png.flaticon.com/512/2707/2707706.png" alt="Squiggly Party Lines"></Image>
           </div>
         </div>
         <div className="px-5 py-20">
@@ -101,12 +102,12 @@ const Home: NextPage = () => {
                 </svg>
               </div>
               <div className="flex flex-col justify-center max-w-3xl text-center col-span-full lg:col-span-3 lg:text-left">
-                <span className="text-xs tracking-wider uppercase dark:text-violet-400">Step 4 - Time to Start</span>
-                <span className="text-xl font-bold md:text-2xl">Explicabo eaque</span>
+                <span className="text-xs tracking-wider uppercase dark:text-violet-400">Step 4 - Event Time</span>
+                <span className="text-xl font-bold md:text-2xl">Start letting people into the event</span>
                 <span className="mt-4 dark:text-gray-300">
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam facilis, voluptates error alias
-                  dolorem praesentium sit soluta iure incidunt labore explicabo eaque, quia architecto veritatis
-                  dolores, enim cons equatur nihil ipsum.
+                  Each event will have a unique url that users and ticketing officers can easily navigate to. Users just
+                  have to enter their ticket id into their phones and click enter. In seconds, the network will confirm
+                  that you can enter, and the ticketing officer will let you into the event.
                 </span>
               </div>
             </div>
