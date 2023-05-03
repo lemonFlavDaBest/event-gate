@@ -68,7 +68,8 @@ const Home: NextPage = () => {
                 <span className="text-xs tracking-wider uppercase dark:text-violet-400">Step 2 - Event</span>
                 <span className="text-xl font-bold md:text-2xl">Create Your Event</span>
                 <span className="mt-4 dark:text-gray-300">
-                  Create your event. You will need your ticket address (from the previous step) and an event name.{" "}
+                  Create your event. You will need your ticket address (from the previous step) and an event name. Also,
+                  note, the wallet creating the event will be responsible for starting the event.{" "}
                 </span>
               </div>
             </div>
