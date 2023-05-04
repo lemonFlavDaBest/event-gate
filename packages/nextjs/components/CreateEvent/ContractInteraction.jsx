@@ -12,7 +12,7 @@ export default function ContractInteraction() {
   const { writeAsync, isLoading } = useScaffoldContractWrite("EventGate", "createEvent", [ticketAddress, eventName, startEvent],  "0.001");
 
   return (
-    <div className="flex bg-base-300 relative pb-10">
+    <div className="flex bg-base-200 relative pb-10">
       <div className="flex flex-col w-full mx-5 sm:mx-8 2xl:mx-20">
         <div className="flex flex-col mt-6 px-7 py-8 bg-base-200 opacity-80 rounded-2xl shadow-lg border-2 border-primary">
           <span className="text-4xl sm:text-6xl text-black">Create Event :)</span>
@@ -21,13 +21,13 @@ export default function ContractInteraction() {
             <input
               type="text"
               placeholder="Enter contract here"
-              className="input font-bai-jamjuree w-full px-5 bg-[url('/assets/gradient-bg.png')] bg-[length:100%_100%] border border-primary text-lg sm:text-2xl placeholder-white uppercase"
+              className="input font-bai-jamjuree w-full px-5 bg-[url('/assets/gradient-2.png')] bg-[length:100%_100%] border border-primary text-lg sm:text-2xl placeholder-white uppercase"
               onChange={e => setTicketAddress(e.target.value)}
             />
             <input
               type="text"
               placeholder="cool event name here"
-              className="input font-bai-jamjuree w-full px-5 bg-[url('/assets/gradient-bg.png')] bg-[length:100%_100%] border border-primary text-lg sm:text-2xl placeholder-white uppercase"
+              className="input font-bai-jamjuree w-full px-5 bg-[url('/assets/gradient-2.png')] bg-[length:100%_100%] border border-primary text-lg sm:text-2xl placeholder-white uppercase"
               onChange={e => setEventName(e.target.value)}
             />
             <div className="form-control">
