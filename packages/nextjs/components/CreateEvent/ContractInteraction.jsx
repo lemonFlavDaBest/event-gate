@@ -20,14 +20,14 @@ export default function ContractInteraction() {
           <div className="mt-8 flex flex-col flex-row items-start sm:items-center gap-2 sm:gap-5">
             <input
               type="text"
-              placeholder="Enter contract here"
-              className="input font-bai-jamjuree w-full px-5 bg-[url('/assets/gradient-2.png')] bg-[length:100%_100%] border border-primary text-lg sm:text-2xl placeholder-white uppercase"
+              placeholder="Ticket Address"
+              className="input w-full px-5 bg-[url('/assets/gradient-2.png')] bg-[length:100%_100%] border border-primary text-lg sm:text-2xl placeholder-gray"
               onChange={e => setTicketAddress(e.target.value)}
             />
             <input
               type="text"
-              placeholder="cool event name here"
-              className="input font-bai-jamjuree w-full px-5 bg-[url('/assets/gradient-2.png')] bg-[length:100%_100%] border border-primary text-lg sm:text-2xl placeholder-white uppercase"
+              placeholder="Event Name"
+              className="input w-full px-5 bg-[url('/assets/gradient-2.png')] bg-[length:100%_100%] border border-primary text-lg sm:text-2xl placeholder-gray"
               onChange={e => setEventName(e.target.value)}
             />
             <div className="form-control">
