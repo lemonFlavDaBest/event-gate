@@ -1,7 +1,7 @@
 import type { NextPage } from "next";
 import Head from "next/head";
 //import Link from "next/link";
-import Image from "next/image";
+//import Image from "next/image";
 import React from "react";
 
 const Home: NextPage = () => {
@@ -26,7 +26,7 @@ const Home: NextPage = () => {
             </h1>
           </div>
           <div className="mt-8">
-            <Image src="https://cdn-icons-png.flaticon.com/512/2707/2707706.png" alt="Squiggly Party Lines"></Image>
+            <img src="https://cdn-icons-png.flaticon.com/512/2707/2707706.png" alt="Squiggly Party Lines"></img>
           </div>
         </div>
         <div className="px-5 py-20">
