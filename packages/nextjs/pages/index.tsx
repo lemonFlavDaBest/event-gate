@@ -8,7 +8,7 @@ const Home: NextPage = () => {
   return (
     <>
       <Head>
-        <title>Devents</title>
+        <title>DEvents</title>
         <meta name="description" content="Ticket App" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link href="https://fonts.googleapis.com/css2?family=Dosis&display=swap" rel="stylesheet" />
