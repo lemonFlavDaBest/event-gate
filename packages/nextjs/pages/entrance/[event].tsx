@@ -1,16 +1,16 @@
 import type { NextPage } from "next";
 import Head from "next/head";
-import { ContractData} from "~~/components/EnterEvent";
+import { ContractData } from "~~/components/EnterEvent";
 
 const EnterEvent: NextPage = () => {
   return (
     <>
       <Head>
-        <title>dEvent Entrance</title>
-        <meta name="description" content="Enter your dEvent" />
+        <title>DEvent Entrance</title>
+        <meta name="description" content="Enter Your dEvent" />
         {/* We are importing the font this way to lighten the size of SE2. */}
         <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link href="https://fonts.googleapis.com/css2?family=Bai+Jamjuree&display=swap" rel="stylesheet" />
+        <link href="https://fonts.googleapis.com/css2?family=Dosis&display=swap" rel="stylesheet" />
       </Head>
       <div className="grid flex-grow" data-theme="exampleUi">
         <ContractData />
