@@ -7,7 +7,7 @@ const EnterEvent: NextPage = () => {
     <>
       <Head>
         <title>DEvent Entrance</title>
-        <meta name="description" content="Enter Your dEvent" />
+        <meta name="description" content="Enter Your DEvent" />
         {/* We are importing the font this way to lighten the size of SE2. */}
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link href="https://fonts.googleapis.com/css2?family=Dosis&display=swap" rel="stylesheet" />
